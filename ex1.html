@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코딩테스트 기록</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <script>
+        // 배열 자르기 splice 와 slice 학습
+        function solution(numbers, num1, num2) {
+            var answer = [];
+            answer = numbers.slice(num1,num2+1)
+            console.log(answer);
+        }
+        function solution(numbers, num1, num2) {
+            var answer = [];
+            answer = numbers.splice(num1,num2-num1+1)
+            console.log(answer);
+        }
+        
+    </script>
+</body>
+</html>
