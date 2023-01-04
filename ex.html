@@ -59,6 +59,49 @@
             array.length != 1 ? answer=array[Math.floor(array.length/2)] : answer = array[0] 
             return answer;
         }
+
+        // 배열 s1, s2 가 몇 개나 같은 값을 가지고 있는지 return 하는 문젲
+        function solution(s1, s2) {
+            var answer = 0;
+            answer = s1.filter((a)=> s2.includes(a)).length;
+            return answer;
+        }
+        // filter 와 includes 를 알고 있어서 쉽게 해결할 수 있었다.
+
+        // 정수 n 이 주어졌을 때 각 자릿수의 n 을 모두 더하는 문제
+        function solution(n) {
+            var answer = 0;
+            array = [...String(n)]
+            for(var i=0; i<array.length; i++){
+                answer += Number(array[i]);
+            }
+            console.log(answer);
+        }
+        solution(1234);
+        // 형변환은 이해했지만 배열을 더하는 것이니 reduce를 쓰면 좀더 좋았것다 ㅜ
+
+        // 정수 n 이 주어질때 순서쌍 a*b가 n 개인 개수를 리턴하는 문제
+        function solution(n) {
+            var answer = 0;
+            array = [];
+            for(i=n; i>0; i--){
+                array.push(i);
+            }
+            answer = array.filter((a)=> n%a==0).length;
+            console.log(answer);
+        }
+        solution(20);
+        // n이하인 정수를 push 하고 배열을 return 해서 풀었다. 수학 더잘하는 사람은 더 깔끔하게 풀은듯..
+
+        // 주어진 정수 n 이 제곱근인지 판별하는 코딩 테스트
+        function solution(n) {
+            var answer = 0;
+            n==1 ? answer= 1 : Math.sqrt(n)%1===0 ? answer = 1 : answer = 2
+            console.log(answer);
+        }
+        solution(1);
+        // 루트 문제일거라 생각해 sqrt 함수를 새로 공부했고 , isInteger 은 이제 지원안하나보다
+        //  그래서 sqrt 로 나온 걸 1로 나눠서 나머지가 0인지 판별했다.
     </script>
 </body>
 </html>
