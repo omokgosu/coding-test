@@ -102,6 +102,83 @@
         solution(1);
         // 루트 문제일거라 생각해 sqrt 함수를 새로 공부했고 , isInteger 은 이제 지원안하나보다
         //  그래서 sqrt 로 나온 걸 1로 나눠서 나머지가 0인지 판별했다.
+
+        // 영어 문자열에서 a, e , i, o, u 를 빼고 리턴하는문제.
+        function solution(my_string) {
+            var answer = '';
+            array = ['a','e','i','o','u']
+            answer = [...my_string].filter((a) => !array.includes(a)).join('');
+            console.log(answer);
+        }
+        solution('nice to meet you')
+        // 나는 filter 와 includes를 썼는데 replace 와 정규표현식으로 간단하게 해결한 사람이 있다.
+
+        // 문자열에 안에 존재하는 숫자를 찾아 더해서 return 하는 함수
+        function solution(my_string) {
+            var answer = '';
+            answer = [...my_string].filter((a)=> /[0-9]/.test(a)).reduce((a,b)=> Number(a)+Number(b));
+            console.log(answer);
+        }
+        solution('aAb1B2cC34oOp')
+        // 정규표현식과 필터 리듀스를 사용했는데, 다른사람들도 거의 비슷하게 한것 같다. 정규표현식 사용법만 조금 달드ㅏ.
+    
+        // 개미군단 문제
+        function solution(hp) {
+            answer = 0;
+            var a = Math.floor(hp/5);
+            var b = hp%5;
+            var c = Math.floor(b/3);
+            var d = b%3/1;
+            answer = a+c+d;
+            console.log(answer);
+        }
+        solution(23)
+        // 나누기하고...나머지구하고..거기서 또 나누고 아주 더럽게 풀었다.. 근데 다른사람들 풀이보니까 다비슷하다.
+    
+        // 배열 numlist 가 있을때 n 의 배수만 return 하는 문제
+        function solution(n, numlist) {
+            var answer = [];
+            answer = numlist.filter((a)=> a%n==0);
+            console.log(answer);
+        }
+        solution(3,[4,5,6,7,8,9,10,11,12]);
+        // 머..filter랑 나머지연산을 이용한거 이제 이쯤오면 쉽다.
+
+        // 대소문자 변환
+        function solution(my_string) {
+            var answer = '';
+            array = [...my_string];
+            array2 = [];
+            for(var i=0; i<array.length; i++){
+                if(/[a-z]/.test(array[i])){
+                    array2.push(array[i].toUpperCase());
+                }else{
+                    array2.push(array[i].toLowerCase());
+                }
+            }
+            console.log(array2)
+            answer = array2.join('');
+            console.log(answer);
+        }
+        solution('AabBBcdedeETE');
+        // 정말 그지같이 풀었다.. 나는 바보다 ..
+
+        // 정수 n 이 주어질때 t 만큼 두배로 늘어난거 구하는 문제
+        function solution(n, t) {
+            var answer = 0;
+            var n = n;
+            for(var i=0; i<t; i++){
+                n = n*2
+            }
+            answer = n
+            console.log(answer);
+        }
+        solution(3,5);
+        //  이걸 다른 사람이 푼거 시프트 연산자..진짜 첨봐따...
+        function solution(n, t) {
+            return n << t;
+        }
+
     </script>
 </body>
 </html>
