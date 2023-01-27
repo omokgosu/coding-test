@@ -206,6 +206,47 @@
             console.log(answer);
         }
         solution("205052");
+        //  상자의 가로, 세로, 높이가 저장되어있는 배열 box와 주사위 모서리의 길이 정수 n이 매개변수로 주어졌을 때, 상자에 들어갈 수 있는 주사위의 최대 개수를 return 하도록 solution 함수를 완성해주세요.
+        function solution(box, n) {
+            var answer = box.map((a) => Math.floor(a/n)).reduce((a,b)=> a*b);
+            console.log(answer);
+        }
+        solution([6,8,10], 3);
+        // 문자열에서 숫자만 빼서 오름차순 정렬
+        function solution(my_string) {
+            var answer = ([...my_string].map(Number)).filter((a)=> !isNaN(a)).sort();
+            console.log(answer);
+        }
+        solution('abcde0');
+         // 정수 n을 입력받아 n의 약수를 모두 더한 값을 리턴하는 함수, solution을 완성해주세요.
+         function solution(n) {
+            var answer = 0;
+            for(let i=n; i>0; i--){
+                if(n%i==0){
+                    answer += i;
+                }
+            }
+            return answer;
+        }
+        solution(13);
+         //배열 numbers의 원소를 direction방향으로 한 칸씩 회전시킨 배열을 return하도록 solution 함수를 완성해주세요.
+         function solution(numbers, direction) {
+            var answer = [];
+            direction==="right" ? numbers.unshift(numbers.pop()) : numbers.push(numbers.shift());
+            answer = numbers;
+            console.log(answer);
+        }
+        solution([4, 455, 6, 4, -1, 45, 6],'right');
+        //자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다.
+        function solution(n) {
+            var answer = [];
+            n = [...String(n)];
+            for(var i=n.length; i>0; i--){
+                answer.push(Number(n[i-1]));
+            }
+            console.log(answer);
+        }
+        solution(123456);
     </script>
 </body>
 </html>
