@@ -247,6 +247,95 @@
             console.log(answer);
         }
         solution(123456);
-    </script>
+        //정수 배열 array가 매개변수로 주어질 때, 가장 큰 수와 그 수의 인덱스를 담은 배열을 return 하도록 solution 함수를 완성해보세요.
+
+
+        function solution(array) {
+            var answer = [];
+            var ex = [...array];
+            answer[0] = (ex.sort((a,b) => b-a)[0]); 
+            answer[1] = array.indexOf(answer[0]);
+            console.log(answer);
+        }
+        solution([9,10,11,8]);
+        //n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
+
+
+        function solution(n) {
+            var answer = 0;
+            var cnt = Math.sqrt(n);
+            cnt%1===0 ? answer = (cnt+1)*(cnt+1) : answer = -1;
+            console.log(answer);
+        }
+        solution(121);
+        //n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
+
+
+        function solution(s) {
+            var answer = '';
+            var as = [...s.toLowerCase()];
+            var p = 0;
+            var y = 0;
+            console.log(as);
+            for(var i of as){
+               if(i=='p'){
+                p++;
+               }
+               if(i=='y'){
+                y++;
+               }
+            }
+            p==y || p+y==0 ? answer=true : answer=false;
+            console.log(answer);
+        }
+        solution('Pyy');
+
+        // 알파벳으로 이루어진 문자열 myString이 주어집니다. 모든 알파벳을 소문자로 변환하여 return 하는 solution 함수를 완성해 주세요.
+        function solution(myString) {
+            return myString.toLowerCase();
+        }
+
+        // 한 자리 정수로 이루어진 문자열 num_str이 주어질 때, 각 자리수의 합을 return하도록 solution 함수를 완성해주세요.
+        function solution(num_str) {
+            var answer = num_str.split('').reduce((a,b) => Number(a)+Number(b))
+            return answer;
+        }
+
+        // 알파벳으로 이루어진 문자열 myString이 주어집니다. 모든 알파벳을 대문자로 변환하여 return 하는 solution 함수를 완성해 주세요.
+        function solution(myString) {
+            return myString.toUpperCase();
+        }
+ 
+        //정수 number와 n, m이 주어집니다. number가 n의 배수이면서 m의 배수이면 1을 아니라면 0을 return하도록 solution 함수를 완성해주세요.
+        function solution(number, n, m) {
+            var answer = number%n == 0 && number%m == 0 ? 1 : 0
+            return answer;
+        }
+
+        // 실수 flo가 매개 변수로 주어질 때, flo의 정수 부분을 return하도록 solution 함수를 완성해주세요.
+        function solution(flo) {
+            return parseInt(flo)
+        }
+
+        //부분 문자열이란 문자열에서 연속된 일부분에 해당하는 문자열을 의미합니다. 예를 들어, 문자열 "ana", "ban", "anana", "banana", "n"는 모두 문자열 "banana"의 부분 문자열이지만, "aaa", "bnana", "wxyz"는 모두 "banana"의 부분 문자열이 아닙니다.
+        //문자열 my_string과 target이 매개변수로 주어질 때, target이 문자열 my_string의 부분 문자열이라면 1을, 아니라면 0을 return 하는 solution 함수를 작성해 주세요.
+        function solution(my_string, target) {
+            return my_string.includes(target) ? 1 : 0
+        }
+
+        // 정수 리스트 num_list와 정수 n이 주어질 때, num_list의 첫 번째 원소부터 n 번째 원소까지의 모든 원소를 담은 리스트를 return하도록 solution 함수를 완성해주세요.
+        function solution(num_list, n) {
+            var answer = [];
+            for(var i=0; i<n; i++){
+                answer.push(num_list[i])
+            }
+            return answer;
+        }
+
+        // 문자열 my_string과 정수 k가 주어질 때, my_string을 k번 반복한 문자열을 return 하는 solution 함수를 작성해 주세요.
+        function solution(my_string, k){
+            return my_string.repeat(k)
+        }
+ </script>
 </body>
 </html>
