@@ -11,22 +11,19 @@
 </head>
 <body>
     <script>
-        function solution(a, b) {
-                let Na = a%2;
-                let Nb = b%2
-                var answer = 0;
-                
-                if(Na === 1 && Nb === 1){
-                    answer = (a+b)**2    
-                }else if(Na === 0 && Nb === 0){
-                    answer = Math.abs(a-b)
-                }else{
-                    answer = (a+b)*2
+        function solution(num_list) {
+            var answer = -1;
+            
+            for(let i=0; i<num_list.length; i++){
+                if(num_list[i] < 0) {
+                    answer = i
+                    break;
                 }
-                
-               console.log(answer);
             }
-        solution(6,6)
+
+            console.log(answer); 
+        }
+        solution([-1 , 12, 4, 15, 46, 38, 5 , 15])
     </script>
 </body>
 </html>
