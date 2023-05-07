@@ -11,19 +11,11 @@
 </head>
 <body>
     <script>
-        function solution(num_list) {
-            var answer = -1;
-            
-            for(let i=0; i<num_list.length; i++){
-                if(num_list[i] < 0) {
-                    answer = i
-                    break;
-                }
-            }
-
-            console.log(answer); 
+        function solution(rny_string) {
+            var answer = rny_string.replace(/m/gi , 'rn');
+            console.log(answer);
         }
-        solution([-1 , 12, 4, 15, 46, 38, 5 , 15])
+        solution("programmers")
     </script>
 </body>
 </html>
