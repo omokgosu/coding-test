@@ -731,6 +731,105 @@
                         return [...el].slice(parts[i][0],parts[i][1]+1).join('')
                     }).join('')
         }
+
+        // 배열 비교하기
+        function solution(arr1, arr2) {
+            var answer = 0;
+            let arr1Num = arr1.length;
+            let arr2Num = arr2.length;
+            let arr1Total = arr1.reduce((a,b) => a+b);
+            let arr2Total = arr2.reduce((a,b) => a+b);
+            
+            arr1Num > arr2Num ? answer = 1 : arr1Num < arr2Num ? answer = -1 : arr1Total > arr2Total ? answer =1 : arr1Total > arr2Total ? answer = 1 : arr1Total < arr2Total ? answer = -1 : answer = 0
+            
+            
+            return answer;
+        }
+
+        // 외계행성의 나이
+
+        function solution(age) {
+            return [...age+""].map(el => {
+                        return String.fromCharCode(Number(el)+97)
+                    }).join('')
+        }
+
+        // 피자 나눠 먹기 (2)
+            function solution(n) {
+                const gcd = (a,b) => {
+                    if(b === 0){
+                        return a
+                    }
+                    return gcd(b, a%b)
+                }
+                return (n*6 / gcd(n,6))/6
+            }
+        
+        // ﻿접미사 배열
+        function solution(my_string) {
+            var answer = [];
+            for( i = 0; i<my_string.length; i++){
+                answer.push(my_string.slice(i))
+            }
+            return answer.sort();
+        }
+
+        // I로 만들기
+        function solution(myString) {
+            const ASCII_I = 'l'.charCodeAt()
+            
+            return [...myString].map(el => {
+                if(String(el).charCodeAt() < ASCII_I){
+                    return 'l'
+                }
+                return el
+            }).join('');
+        }
+
+        // 0 떼기
+        const solution = (str) => String(Number(str))
+
+        // x만큼 간격이 있는 n개의 숫자
+        function solution(x, n) {
+            var answer = [];
+            for(i=1; i<=n; i++){
+                answer.push(x*i)
+            }
+            return answer;
+        }
+
+        // 나머지가 1이 되는 수 찾기
+        function solution(n) {
+            var answer = 0;
+            for(i=2; i<n; i++){
+                if((n-1)%i === 0){
+                    answer = i
+                    break;
+                }
+            }
+            return answer;
+        }
+
+        // 순서 바꾸기
+        function solution(num_list, n) {
+            return [...num_list.slice(n) , ...num_list.slice(0,n)]
+        }
+
+        // 5명씩
+        function solution(names) {
+            var answer = [];
+            for(i= 0; i<names.length; i +=5){
+            answer.push(names[i]) 
+            }
+            return answer;
+        }
+
+        // 할 일 목록
+        function solution(todo_list, finished) {
+            return todo_list.filter((_,i)=> 
+                        finished[i] === true
+                    );
+        }
 </script>
 </body>
 </html>

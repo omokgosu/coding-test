@@ -11,12 +11,12 @@
 </head>
 <body>
     <script>
-        function solution(my_strings, parts) {
-            console.log(my_strings.map((el,i)=>{
-                return [...el].slice(parts[i][0],parts[i][1]+1).join('')
-            }))
+        function solution(a,b,c) {
+            let x = (a+b+c) * ((a*a) + (b*b) + (c*c)) * ((a*a*a) + (b*b*b) + (c*c*c))
+            let y = (a+b+c)**4
+            return  [x, y];
         }
-        solution(["progressive", "hamburger", "hammer", "ahocorasick"],[[0, 4], [1, 2], [3, 5], [7, 7]])
+        console.log(solution(1,2,3))
     </script>
 </body>
 </html>
