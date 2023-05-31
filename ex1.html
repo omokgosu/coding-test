@@ -11,14 +11,32 @@
 </head>
 <body>
     <script>
-        function solution(arr, intervals) {
-            var answer = [];
-            intervals.map((el,i) => {
-                answer.push(...arr.slice(intervals[i][0],intervals[i][1]+1))
-            })
+       function solution(n) {
+            var answer = 0;
+            
+            const counter = (number) => {
+                let count=0;
+                
+                for(let i=1; i<number; i++){
+                    if(number % i == 0){
+                        count++
+                    }
+                }
+                
+                return count
+            }
+
+            for(let i=1; i<n; i++){
+                if(counter(i) >= 3){
+                    console.log(counter(i));
+                    answer++
+                }
+            }
+
             return answer;
         }
-        console.log(solution([1, 2, 3, 4, 5],[[1, 3], [0, 4]]))
+        
+        console.log(solution(10))
     </script>
 </body>
 </html>
