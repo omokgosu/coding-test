@@ -11,32 +11,18 @@
 </head>
 <body>
     <script>
-       function solution(n) {
+        function solution(i, j, k) {
             var answer = 0;
             
-            const counter = (number) => {
-                let count=0;
-                
-                for(let i=1; i<number; i++){
-                    if(number % i == 0){
-                        count++
-                    }
-                }
-                
-                return count
+            for (let index = i; index<=j; index++){
+                [...index+''].map(el => {
+                    if(el==k) answer++
+                })
+                console.log([...index+''])
             }
-
-            for(let i=1; i<n; i++){
-                if(counter(i) >= 3){
-                    console.log(counter(i));
-                    answer++
-                }
-            }
-
             return answer;
         }
-        
-        console.log(solution(10))
-    </script>
+        console.log(solution(1,13,1))
+</script>
 </body>
 </html>

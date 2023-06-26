@@ -843,8 +843,66 @@
             });
         }
 
-        // 간단한 식 계산하기
-        
+        // 수 조작하기 2
+        function solution(numLog) {
+            var answer = '';
+            
+            for(var i=0; i<numLog.length-1; i++){
+                var word = numLog[i+1] - numLog[i]
+
+                if(word === 1){
+                    answer += 'w'
+                }
+                if(word === -1){
+                    answer += 's'
+                }
+                if(word === 10){
+                    answer += 'd'
+                }
+                if(word === -10){
+                    answer += 'a'
+                }
+            }
+
+            return answer;
+        } 
+        // 배열만들기 
+        function solution(intStrs, k, s, l) {
+            return intStrs.map(el => Number(el.slice(s,s+l))).filter(el => el>k);
+        }
+
+        // 수열과 구간 쿼리
+        function solution(arr, queries) {
+    
+            queries.forEach(el => {
+                for(let i=el[0]; i<=el[1]; i++){
+                    arr[i] = arr[i]+1
+                }
+            });
+            return arr 
+        }
+
+        // 날짜 비교하기
+        function solution(date1, date2) {
+            const [year1, month1, day1] = date1
+            const [year2, month2, day2] = date2
+            if(year1 !== year2) return year1 < year2 ? 1 : 0
+            if(month1 !== month2) return month1 < month2 ? 1 : 0
+            if(day1 !== day2) return day1 < day2 ? 1 : 0
+            return 0
+        }
+        // k의 개수
+        function solution(i, j, k) {
+            var answer = 0;
+            
+            for (let index = i; index<=j; index++){
+                [...index+''].map(el => {
+                    if(el==k) answer++
+                })
+                console.log([...index+''])
+            }
+            return answer;
+        }
 </script>
 </body>
 </html>
