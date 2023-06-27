@@ -903,6 +903,52 @@
             }
             return answer;
         }
+
+        // 가까운 수
+        function solution(array, n) {
+            var answer = 0;
+            var diff = 200;
+            array.sort((a,b)=>b-a).forEach(el => {
+                if(Math.abs(n-el) <= diff){
+                    diff = Math.abs(n-el)
+                    answer = el
+                }
+            })
+            return answer;
+        }
+        // 글자 지우기
+        function solution(my_string, indices) {
+            return [...my_string].filter((_,i) => !indices.includes(i) ).join('');
+        }
+        // 가장 작은 값 제거
+        if(arr.length === 1){
+                return -1
+            }
+            var answer = [];
+            var min = Math.min(...arr);
+            
+            answer = arr.filter(el => el !== min)
+            
+        return answer;
+        //진료 순서 정하기
+        function solution(emergency) {
+            var rank = [...emergency].sort((a,b) => b-a) 
+            return emergency.map(el => {
+                return rank.indexOf(el)+1
+            })
+        }
+        // 숨어 있는 숫자의 덧셈
+        function solution(my_string) {
+            var answer = my_string.match(/\d+/g)
+            var sum = 0;
+            if(answer){
+                answer.forEach(el => {
+                    sum += parseInt(el)
+                })    
+            }
+
+            return sum
+        }
 </script>
 </body>
 </html>
