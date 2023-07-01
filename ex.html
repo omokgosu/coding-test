@@ -949,6 +949,89 @@
 
             return sum
         }
+        // 세로 읽기
+        function solution(my_string, m, c) {
+            var answer = ''
+            
+            for(var i = c; i<=my_string.length; i += m){
+                answer += my_string[i-1]
+            }
+            
+            return answer;
+        }
+        // 수열과 구간쿼리 3
+        function solution(arr, queries) {
+            var answer = [...arr];
+            
+            queries.forEach(el => {
+                let newArr = [...answer];
+                let stack = newArr[el[0]];
+                
+                newArr[el[0]] = newArr[el[1]];
+                newArr[el[1]] = stack;
+                
+                answer = newArr
+            })
+            
+            return answer;
+        }
+        // 이차연 배열 대각선 순회하기
+        function solution(board, k) {
+            var answer = 0;
+        
+            for(var i=0; i<board.length; i++){
+                for(var j=0; j<=board[i].length; j++){
+                    if(i+j < k){
+                        answer += board[i][j]
+                    }
+                }
+            }
+            return answer;
+        }
+        // 1로 만들기
+        function solution(num_list) {
+            answer = 0;
+            
+            const cur = (number,count) => {
+                if(number === 1){
+                    answer += count
+                    return    
+                }
+                if(number%2 === 0){
+                    return cur(number/2,count+1)
+                }
+                if(number%2 === 1){
+                    return cur((number-1)/2,count+1)
+                }
+            }
+            
+            num_list.forEach(el => {
+                cur(el,0)
+            })
+                
+            return answer
+        }
+        // 특정 문자열로 끝나는 가장 긴 부분 문자열 찾기
+        function solution(myString, pat) {
+            return myString.slice(0,myString.lastIndexOf(pat)+pat.length);;
+        }
+        // 빈 배열에 추가, 삭제하기
+        function solution(arr, flag) {
+            var answer = [];
+            
+            flag.forEach((el,i) => {
+                if(el){
+                    for(let j=0; j<arr[i]*2; j++){
+                        answer.push(arr[i])
+                    }
+                }else{
+                    for(let j=0; j<arr[i]; j++){
+                        answer.pop()
+                    }
+                }
+            })
+            return answer;
+        }
 </script>
 </body>
 </html>
