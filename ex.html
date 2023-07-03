@@ -1032,6 +1032,46 @@
             })
             return answer;
         }
+        // 가운데 글자 가져오기
+        function solution(s) {
+            var le = s.length;
+            return le%2 === 0 ? s.substr(le/2-1,2) : s.substr(Math.floor(le/2),1);
+        }
+        // 수박수박수박수박수?
+        function solution(n) {
+            let answer = '';
+            return answer.padEnd(n,'수박') 
+        }
+        // 한 번만 등장한 문자
+        function solution(s) {
+            var answer = '';
+            [...s].forEach(el => {
+                if(s.indexOf(el) === s.lastIndexOf(el)){
+                    answer += el
+                }
+            })
+            return [...answer].sort().join('');
+        }
+        // 내적
+        function solution(a, b) {
+            var answer = 0;
+            a.forEach((_,i) => {
+                answer += a[i]*b[i]
+            })
+            return answer;
+        }
+        // 문자열이 몇 번 등장하는지 세기
+        function solution(myString, pat) {
+            var answer = 0;
+
+            for(var i=0; i<myString.length; i++){
+                if(myString.slice(i).startsWith(pat)){
+                    answer ++
+                }
+            }
+
+            return answer
+        }
 </script>
 </body>
 </html>

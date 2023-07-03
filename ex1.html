@@ -11,24 +11,18 @@
 </head>
 <body>
     <script>
-     function solution(arr, flag) {
-        var answer = [];
-        
-        flag.forEach((el,i) => {
-            console.log(answer)
-            if(el){
-                for(let j=0; j<arr[i]*2; j++){
-                    answer.push(arr[i])
-                }
-            }else{
-                for(let j=0; j<arr[i]; j++){
-                    answer.pop()
+        function solution(myString, pat) {
+            var answer = 0;
+
+            for(var i=0; i<myString.length; i++){
+                if(myString.slice(i).startsWith(pat)){
+                    answer ++
                 }
             }
-        })
-        return answer;
-    }
-        console.log(solution([3, 2, 4, 1, 3],[true, false, true, false, false]))
+
+            return answer
+        }
+        console.log(solution("banana"	,'ana'))
 </script>
 </body>
 </html>
