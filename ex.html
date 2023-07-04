@@ -1072,6 +1072,50 @@
 
             return answer
         }
+        // 간단한 논리 연산
+        function solution(x1, x2, x3, x4) {
+            return (x1||x2) && (x3||x4);
+        }
+        // 문자열 뒤집기
+        function solution(my_string, s, e) {
+            const str = my_string.slice(s,e+1);
+            const newStr = [...str].reverse().join('');
+            return my_string.replace(str, newStr);
+        }
+        // 배열의 길이를 2의 거듭제곱으로 만들기
+        function solution(arr) {
+            var answer = [];
+            let le = arr.length;
+
+            for(var i=0; i<le; i++){
+                if(le <= 2**i){
+                    answer = Array(2**i).fill(0);
+                    answer.splice(0,le,...arr);
+                    break;
+                }
+            }
+
+            return answer;
+        }
+        // 이진수 더하기
+        function solution(bin1, bin2) {
+            var answer = parseInt(+bin1,2) + parseInt(+bin2,2) ;
+            return answer.toString(2);
+        }
+        // 컨트롤 제트
+        function solution(s) {
+            var answer = 0;
+            s = s.split(' ');
+            s.forEach((el,i) => {
+                if(el === 'Z'){
+                    answer -= s[+(i-1)];
+                    return
+                }
+                answer += +el
+            })
+
+            return answer;
+        }
 </script>
 </body>
 </html>
