@@ -11,10 +11,16 @@
 </head>
 <body>
     <script>
-        function solution(strArr) {
-            return strArr.map(el => el.length);
+       function solution(price, money, count) {
+            var answer = 0;
+            var minus = 0;
+            for(let i=1; i<=count; i++){
+                minus += price*i
+            }
+            
+            return money-minus > 0 ? 0 : money-minus ;
         }
-        console.log(solution(["a","bc","d","efg","hi"]))
+        console.log(solution(3,20,4))
 </script>
 </body>
 </html>

@@ -1218,7 +1218,27 @@
             return count <= le ? count : index === 0 ? numbers[numbers.length-1] : numbers[index-1];
         }
         // 문자열 묶기
-        
+        function solution(strArr) {
+            array = Array(31).fill(0);
+            for (let s of strArr) array[s.length]++
+            return Math.max(...answer);
+        }
+        // 커피 심부름
+        function solution(order) {
+            var answer = 0;
+            for(let s of order){
+                if(s.includes('americano')){
+                    answer += 4500
+                }
+                if(s.includes('cafelatte')){
+                    answer += 5000
+                }
+                if(s.includes('anything')){
+                    answer += 4500
+                }
+            }
+            return answer;
+        }
 </script>
 </body>
 </html>
