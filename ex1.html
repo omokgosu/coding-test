@@ -12,28 +12,15 @@
 <body>
     <script>
        function solution(arr) {
-
-            const progression = (array,count) => {
-                const newArray = [...array].map(el => {
-                    if(el>=50 && el%2===0){
-                        return el/2
-                    }else if(el<50 && el%2===1){
-                        return el*2+1
-                    }else{
-                        return el
-                    }
-                })
-                if(newArray.join('') == array.join('')){
-                    return count
-                }else{
-                    return progression(newArray, count+=1)
-                }
+            var firstIndex = arr.indexOf(2);
+            var lastIndex = arr.lastIndexOf(2);
+            
+            if(firstIndex === -1 && lastIndex === -1){
+                return -1
             }
-
-
-            return progression(arr,0);
+            return  arr.slice(firstIndex, lastIndex+1);
         }
-        console.log(solution([1, 2, 3, 100, 99, 98]))
+        console.log(solution([1,1,1,2,1,-1,2]))
 </script>
 </body>
 </html>

@@ -1259,6 +1259,17 @@
             }
             return progression(arr,0);
         }
+
+        // 2의 영역
+        function solution(arr) {
+            var firstIndex = arr.indexOf(2);
+            var lastIndex = arr.lastIndexOf(2);
+            
+            if(firstIndex === -1 && lastIndex === -1){
+                return -1
+            }
+            return  arr.slice(firstIndex, lastIndex+1);
+        }
 </script>
 </body>
 </html>
