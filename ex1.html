@@ -11,16 +11,15 @@
 </head>
 <body>
     <script>
-       function solution(arr) {
-            var firstIndex = arr.indexOf(2);
-            var lastIndex = arr.lastIndexOf(2);
-            
-            if(firstIndex === -1 && lastIndex === -1){
-                return -1
-            }
-            return  arr.slice(firstIndex, lastIndex+1);
+       function solution(q, r, code) {
+            var answer = [...code].filter((el,i)=>{
+                if(i%q === r){
+                    return el
+                }
+            }).join('')
+            return answer;
         }
-        console.log(solution([1,1,1,2,1,-1,2]))
+        console.log(solution(3,1,"qjnwezgrpirldywt"))
 </script>
 </body>
 </html>
