@@ -1275,6 +1275,18 @@
         function solution(q, r, code) {
             return [...code].filter((_,i)=> i%q === r).join('');
         }
+
+        // 잘라서 배열로 저장하기
+        function solution(my_str, n) {
+            var answer = [];
+            for(let i=0; i < my_str.length; i+=n){
+                answer.push(my_str.slice(i,i+n))
+            }
+            
+            return answer;
+        }
+
+        // 부족한 금액 계산하기
 </script>
 </body>
 </html>
