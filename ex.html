@@ -1287,6 +1287,58 @@
         }
 
         // 부족한 금액 계산하기
+        function solution(price, money, count) {
+            let total = 0;
+            
+            for(let i=1; i<=count; i++){
+                total += price*i;
+            }
+            
+            return total > money ? total-money : 0;
+        }
+
+        // 문자 개수세기
+        function solution(my_string) {
+            var answer = new Array(52).fill(0);
+            [...my_string].forEach(el => {
+                let charCode = el.charCodeAt(0);
+                
+                if(charCode >= 65 && charCode <= 90){
+                    answer[charCode-65] += 1;
+                }else{
+                    answer[charCode-71] += 1;
+                }
+            })
+            return answer;
+        }
+
+        // 문자열 계산하기
+        function solution(my_string) {
+            return Function(`return ${my_string}`)()
+        }
+
+        // 영어가 싫어요
+        function solution(numbers) {
+            let answer = numbers;
+            const wordToNumber = {
+                'one': 1,
+                'two': 2,
+                'three': 3,
+                'four': 4,
+                'five': 5,
+                'six': 6,
+                'seven': 7,
+                'eight': 8,
+                'nine': 9,
+                'zero': 0
+            };
+
+            for (const key in wordToNumber) {
+                answer = answer.replaceAll(key, wordToNumber[key]);
+            }
+            
+            return +answer;
+        }
 </script>
 </body>
 </html>
