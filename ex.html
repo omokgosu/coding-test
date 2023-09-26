@@ -1339,6 +1339,86 @@
             
             return +answer;
         }
+
+        // 배열 만들기 4
+        function solution(arr) {
+            var stk = [];
+            let i = 0;
+            while(i < arr.length){
+                const top = stk.length;
+                if(top === 0){
+                    stk.push(arr[i]);
+                    i++;
+                }else{
+                    if(stk[top-1] < arr[i]){
+                        stk.push(arr[i]);
+                        i++;
+                    }else if(stk[top-1] >= arr[i]){
+                        stk.pop();
+                    }
+                }
+            }
+            return stk;
+        }
+
+        // 문자열 다루기 기본
+        function solution(s) {
+            const regex = /^[0-9]{4}$|^[0-9]{6}$/;
+            return regex.test(s);
+        }
+
+        //두수의 합
+        function solution(a, b) {
+            const num1 = BigInt(a);
+            const num2 = BigInt(b);
+            
+            return (num1 + num2).toString();
+        }
+
+        // 구슬을 나누는 경우의 수
+        function solution(balls, share) {
+            const factorial = (number) => {
+                if(number <= 1){
+                    return 1
+                }
+                if(number !== 1){
+                    return number * factorial(number-1);
+                }
+            }
+        
+
+            return Math.round(factorial(balls) / (factorial(balls-share) * factorial(share)));
+        }
+
+        // 행렬의 덧셈
+        function solution(arr1, arr2) {
+            var answer = [];
+            for(let i=0; i<arr1.length; i++){
+                let arrayItme = [];
+                for(let j=0; j<arr1[i].length; j++){
+                    arrayItme.push(arr1[i][j] + arr2[i][j]);
+                }
+                answer.push(arrayItme);
+            }
+            
+            return answer;
+        }
+
+        // 최댓값과 최솟값
+        function solution(s) {
+            var answer = s.split(' ').map(el => +el);
+            return `${Math.min(...answer)} ${Math.max(...answer)}`;
+        }
+
+        // 왼쪽 오른쪽
+        function solution(str_list) {
+            var answer = [];
+            for(let i = 0; i<str_list.length; i++){
+                if(str_list[i] === 'l') return str_list.slice(0,i); 
+                if(str_list[i] === 'r') return str_list.slice(i+1);
+            }
+            return answer;
+        }
 </script>
 </body>
 </html>

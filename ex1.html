@@ -11,29 +11,16 @@
 </head>
 <body>
     <script>
-        function solution(numbers) {
-            let answer = numbers;
-            const wordToNumber = {
-                'one': 1,
-                'two': 2,
-                'three': 3,
-                'four': 4,
-                'five': 5,
-                'six': 6,
-                'seven': 7,
-                'eight': 8,
-                'nine': 9,
-                'zero': 0
-            };
-
-            for (const key in wordToNumber) {
-                answer = answer.replaceAll(key, wordToNumber[key]);
+        function solution(str_list) {
+            var answer = [];
+            for(let i = 0; i<str_list.length; i++){
+                if(str_list[i] === 'l') return str_list.slice(0,i); 
+                if(str_list[i] === 'r') return str_list.slice(i+1);
             }
-            
-            return +answer;
+            return answer;
         }
 
-        console.log(solution("onetwothreefourfivesixseveneightnine"))
+        console.log(solution(["u", "u", "r", "l"]))
 </script>
 </body>
 </html>
