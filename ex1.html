@@ -11,16 +11,16 @@
 </head>
 <body>
     <script>
-        function solution(str_list) {
+        function solution(arr) {
             var answer = [];
-            for(let i = 0; i<str_list.length; i++){
-                if(str_list[i] === 'l') return str_list.slice(0,i); 
-                if(str_list[i] === 'r') return str_list.slice(i+1);
-            }
-            return answer;
-        }
+            const rows = arr.length;
+            const cols = arr.reduce((max , row) => Math.max(max,row.length) , 0);
+            const max = Math.max(rows,cols);
 
-        console.log(solution(["u", "u", "r", "l"]))
+            
+            return arr;
+        }
+        console.log(solution([[572, 22, 37], [287, 726, 384], [85, 137, 292], [487, 13, 876]]))
 </script>
 </body>
 </html>

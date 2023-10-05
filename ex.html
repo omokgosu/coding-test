@@ -1419,6 +1419,87 @@
             }
             return answer;
         }
+
+        // 배열 만들기 6
+        function solution(arr) {
+            const stk = []; 
+            arr.forEach((el,i)=>{
+                const len = stk.length;
+        
+                if(len === 0){
+                    stk.push(el);
+                }
+                if(len > 0){
+                    if(stk[len-1] === el){
+                        stk.pop();
+                    }else{
+                        stk.push(el);
+                    }
+                }
+            })
+
+            return stk.length > 0 ? stk : [-1];
+        }
+        
+        // 삼각형의 완성조건
+        function solution(sides) {
+            var answer = 0;
+            const [one , two] = sides;
+
+            for(let i=1; i<one+two; i++){
+                const newSides = [...sides,i].sort((a,b) => a-b);
+                if(newSides[2] < newSides[1] + newSides [0]) answer++;
+            }
+
+            return answer;
+        }
+
+        // 문자열 여러번 뒤집기
+        function solution(my_string, queries) {
+            var answer = my_string;
+
+            queries.forEach(el => {
+                const [one , two] = el;
+                const string = answer.slice(one,two+1);
+                const reverse_string = [...string].reverse().join('');
+
+                answer = answer.slice(0, one) + reverse_string + answer.slice(two + 1);;
+            })
+
+            return answer;
+        }
+
+        // 수열과 구간쿼리 2
+        function solution(arr, queries) {
+            var answer = [];
+
+            for(const item of queries){
+                const [s,e,k] = item;
+                const filterList = [];
+
+                for(let i=s; i<=e; i++){
+                    if(arr[i] > k) filterList.push(arr[i]);
+                }
+
+                if(filterList.length === 0){
+                    answer.push(-1);
+                    continue
+                }
+                answer.push(Math.min(...filterList));
+            }
+
+            return answer;
+        }
+
+        // 조건 문자열
+        function solution(ineq, eq, n, m) {
+            let condition = '';
+            if(eq === '!') condition = n+ineq+m;
+            if(eq === '=') condition = n+ineq+eq+m;
+            answer = Function(`return ${condition}`)();
+
+            return answer ? 1 : 0;
+        }
 </script>
 </body>
 </html>
