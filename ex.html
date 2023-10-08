@@ -1500,6 +1500,14 @@
 
             return answer ? 1 : 0;
         }
+        // 무작위로 k 개의 개수 뽑기
+        function solution(arr, k) {
+            var answer = [...new Set(arr)].slice(0,k);
+            while(answer.length < k){
+                answer.push(-1);
+            }
+            return answer;
+        }
 </script>
 </body>
 </html>

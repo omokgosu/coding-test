@@ -11,16 +11,14 @@
 </head>
 <body>
     <script>
-        function solution(arr) {
-            var answer = [];
-            const rows = arr.length;
-            const cols = arr.reduce((max , row) => Math.max(max,row.length) , 0);
-            const max = Math.max(rows,cols);
-
-            
-            return arr;
+        function solution(arr, k) {
+            var answer = [...new Set(arr)].slice(0,k);
+            while(answer.length < k){
+                answer.push(-1);
+            }
+            return answer;
         }
-        console.log(solution([[572, 22, 37], [287, 726, 384], [85, 137, 292], [487, 13, 876]]))
+        console.log(solution([0, 1, 1, 1, 1] , 4))
 </script>
 </body>
 </html>
