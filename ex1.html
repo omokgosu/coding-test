@@ -11,14 +11,18 @@
 </head>
 <body>
     <script>
-        function solution(arr, k) {
-            var answer = [...new Set(arr)].slice(0,k);
-            while(answer.length < k){
-                answer.push(-1);
+        function solution(s) {
+            let answer = [0,0];
+            while (s != '1') {
+                s = [...s].filter(el => {
+                    if (el === '0') answer[1]++;
+                    return +el;
+                }).join('').toString(10).length.toString(2);
+                answer[0]++;
             }
             return answer;
         }
-        console.log(solution([0, 1, 1, 1, 1] , 4))
+        console.log(solution("110010101001"))
 </script>
 </body>
 </html>

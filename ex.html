@@ -1508,6 +1508,99 @@
             }
             return answer;
         }
+        // 정사각형으로 만들기
+        function solution(arr) {
+            var answer = [...arr];
+            const col = arr.length;
+            const row = arr.reduce((max,column) => Math.max(max , column.length) , 0)
+            if( col > row){
+                answer = answer.map( item => {
+                    let newItem = [...item];
+                    while(newItem.length < col){
+                        newItem.push(0);
+                    }
+                    return newItem;
+                })
+            }
+            if(row > col){
+                let newArr = new Array(row).fill(0);
+                for(let i = col; i < row; i++){
+                    answer.push(newArr);
+                }
+            }
+
+            return answer;
+        }
+        // 최대공약수와 최소공배수
+        function solution(n, m) {
+            var answer = [];
+            function gcd(n, m) {
+                if (m === 0) {
+                    return n;
+                } else {
+                    return gcd(m, n % m);
+                }
+            }
+            function lcm(n, m) {
+                return (n * m) / gcd(n, m);
+            }
+            answer[0] = gcd(n,m);
+            answer[1] = lcm(n,m);
+            return answer;
+        }
+        // 최솟값 만들기
+        function solution(A,B){
+            var answer = 0;
+            let a = A.sort((a,b) => b-a);
+            let b = B.sort((a,b) => a-b);
+            while(a.length > 0){
+                answer += a[a.length-1] * b[b.length-1];
+                a.pop();
+                b.pop();
+            }
+            return answer;
+        }
+
+        // 올바른 괄호
+        function solution(s){
+            var stack = [];
+            for(let char of s){
+                if(char === '('){
+                    stack.push(char);
+                }else if( char === ')' && stack.length > 0){
+                    stack.pop();
+                }else{
+                    return false;
+                }
+
+            }
+            return stack.length === 0;
+        }
+        // 그림 확대
+        function solution(picture, k) {
+            let answer = [];
+            picture.forEach(el => {
+                let item = [...el];
+                item = item.map(el => el.repeat(k)).join('');
+                for(let i = 0; i < k ; i++){
+                    answer.push(item);
+                }
+            });
+
+            return answer
+        }
+        // 이진 변환 반복하기
+        function solution(s) {
+            let answer = [0,0];
+            while (s != '1') {
+                s = [...s].filter(el => {
+                    if (el === '0') answer[1]++;
+                    return +el;
+                }).join('').toString(10).length.toString(2);
+                answer[0]++;
+            }
+            return answer;
+        }
 </script>
 </body>
 </html>
