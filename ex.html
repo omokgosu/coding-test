@@ -1601,6 +1601,121 @@
             }
             return answer;
         }
+        // PCCP 모의고사 1회 외톨이 알파벳
+        function solution(str) {
+			var uniqueStr = [...new Set(str.trim())];
+			var soloStrings = [];
+
+			for (var i = 0; i < uniqueStr.length; i++){
+				var regex = new RegExp(`${uniqueStr[i]}*`, 'g');
+				
+				if (str.match(regex).filter(Boolean).length > 1) soloStrings.push(uniqueStr[i]);
+			}
+			
+			return  soloStrings.length > 0 ? soloStrings.sort().join('') : "N";
+		}
+        // PCCP 모의고사 1회 체육대회
+        function solution(ability) {
+            let answer = 0;
+
+            function DFS(L, s, ability, check) {
+                const n = ability.length; // 학생 수
+                const m = ability[0].length; // 종목 개수
+
+                if (L === m) {
+                    answer = Math.max(answer, s); // 능력치 합의 최댓값을 구함
+                } else {
+                    for (let i = 0; i < n; i++) {
+                        if (check[i] === 0) {
+                            check[i] = 1;
+                            DFS(L + 1, s + ability[i][L], ability, check);
+                            check[i] = 0;
+                        }
+                    }
+                }
+            }
+
+            const check = new Array(ability.length).fill(0);
+            DFS(0, 0, ability, check);
+            return answer;
+        }
+        // PCCP 모의고사 1회 유전법칙
+        function solution(queries) {
+            var answer = [];
+
+            function bean(generation, order) {
+                if (generation === 1) return 'Rr';
+
+                const parent = bean(generation - 1, Math.floor((order-1)/ 4) + 1);
+
+                if (parent === "RR" || parent === "rr") return parent;
+
+                if (order % 4 === 0) {
+                    return 'rr';
+                } else if (order % 4 === 1) {
+                    return 'RR';
+                } else {
+                    return 'Rr';
+                }
+            }
+
+            for(let query of queries){
+                answer.push(bean(query[0] , query[1]));
+            }
+
+            return answer;
+        }
+        // 같은 숫자는 싫어!
+        function solution(arr){            
+            return arr.filter((val , index) => val != arr[index+1]);
+        }
+        // 외계 언어 해석
+        function solution(spell, dic) {
+            var answer = 2;
+            let check = spell.sort().join('');
+
+            dic.forEach((el)=> {
+                el = [...el].sort().join('');
+                console.log(el,check);
+                if(check === el){
+                    answer = 1;
+                }
+            })
+
+            return answer;
+        }
+        // 문자열 겹쳐쓰기
+        function solution(my_string, overwrite_string, s) {
+            var answer = [...my_string]
+            answer.splice(s,overwrite_string.length,...overwrite_string);
+            return answer.join("");
+        }
+        // 종이 자르기
+        function solution(M, N) {
+            var answer = M*N-1;
+            return answer;
+        }
+        // 직사각형 넓이 구하기
+        function solution(dots) {
+            // x와 y 좌표 값의 최소값과 최대값 찾기
+            let minX = dots[0][0];
+            let minY = dots[0][1];
+            let maxX = dots[0][0];
+            let maxY = dots[0][1];
+
+            for (let i = 1; i < dots.length; i++) {
+                const [x, y] = dots[i];
+                minX = Math.min(minX, x);
+                minY = Math.min(minY, y);
+                maxX = Math.max(maxX, x);
+                maxY = Math.max(maxY, y);
+            }
+
+            // 직사각형의 넓이 계산
+            const area = (maxX - minX) * (maxY - minY);
+
+            return area;
+        }       
 </script>
 </body>
 </html>
