@@ -11,28 +11,15 @@
 </head>
 <body>
     <script>
-        function solution(dots) {
-    // x와 y 좌표 값의 최소값과 최대값 찾기
-    let minX = dots[0][0];
-    let minY = dots[0][1];
-    let maxX = dots[0][0];
-    let maxY = dots[0][1];
+        function solution(rank, attendance) {
+            var answer = rank.filter((_, index) => attendance[index]).sort((a,b) => a-b);
+            const a = rank.findIndex(el => el === answer[0])*10000;
+            const b = rank.findIndex(el => el === answer[1])*100;
+            const c = rank.findIndex(el => el === answer[2]);
+            return a+b+c;
+        }
 
-    for (let i = 1; i < dots.length; i++) {
-        const [x, y] = dots[i];
-        minX = Math.min(minX, x);
-        minY = Math.min(minY, y);
-        maxX = Math.max(maxX, x);
-        maxY = Math.max(maxY, y);
-    }
-
-    // 직사각형의 넓이 계산
-    const area = (maxX - minX) * (maxY - minY);
-
-    return area;
-}
-
-        console.log(solution([[-1, -1], [-2, -1], [-2, -2], [-1, -2]]))
+        console.log(solution([3, 7, 2, 5, 4, 6, 1],[false, true, true, true, true, false, false]))
 </script>
 </body>
 </html>

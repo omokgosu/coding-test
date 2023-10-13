@@ -1711,11 +1711,219 @@
                 maxY = Math.max(maxY, y);
             }
 
-            // 직사각형의 넓이 계산
+        // 직사각형의 넓이 계산
             const area = (maxX - minX) * (maxY - minY);
 
             return area;
         }       
+        // 캐릭터의 좌표
+        function solution(keyinput, board) {
+            var answer = [0,0];
+            const [maxX , maxY] = board.map(el => Math.floor(el/2));
+            
+            keyinput.forEach(input => {
+                if(input == 'left' && answer[0] > -maxX){
+                    answer[0]--;
+                }
+                if(input == 'right' && answer[0] < maxX){
+                    answer[0]++;
+                }
+                if(input == 'up' && answer[1] < maxY){
+                    answer[1]++;
+                }
+                if(input == 'down' && answer[1] > -maxY){
+                    answer[1]--;
+                }
+            })
+
+            return answer;
+        }
+        // 3진법 뒤집기
+        function solution(n) {
+            let answer = [...n.toString(3)].reverse().join('');
+            return parseInt(answer , 3);
+        }
+        // 로그인 성공?
+        function solution(id_pw, db) {
+            let answer = 'fail'
+            const [id, pw] = id_pw;
+            
+            for (let info of db) {
+                if (id === info[0] && pw === info[1]) {
+                    answer = 'login';
+                    break;
+                } else if (id === info[0]) {
+                    return 'wrong pw';
+                }
+            }
+            
+            return answer;
+        } 
+        // 숫자의 표현
+        function solution(n) {
+            let answer = 0;
+            
+            for (let i = 1; i <= n; i++) {
+                let sum = 0;
+                
+                for (let j = i; j <= n; j++) {
+                    sum += j;
+                    if (sum === n) {
+                        answer++;
+                        break;
+                    } else if (sum > n) {
+                        break;
+                    }
+                }
+            }
+            
+            return answer;
+        }
+        // 예산
+        function solution(d, budget) {
+            const budgetApply = d.sort((a,b)=>a-b).filter(v=>{
+                if(budget - v >= 0){
+                    budget -= v
+                    return true
+                }
+                return false
+            })
+
+            return budgetApply.length
+        }
+        // 이상한 문자 만들기
+        function solution(s) {
+            var answer = s.split(' ');
+            answer = answer.map(el =>{
+                let newS = [...el].map((el,i) => {
+                    if(i % 2 === 1){
+                        return el.toLowerCase();
+                    }
+                    return el.toUpperCase();
+                }).join('');
+                return newS
+            }).join(' ');
+
+            return answer;
+        }
+        // 치킨 쿠폰
+        function solution(chicken) {
+            let answer = 0;
+
+            const chickenCount = (chicken , service , coupone) => {
+                let newChicken = Math.floor(chicken/10);
+                service += Math.floor(chicken/10);
+                coupone += chicken%10;
+                
+                if(coupone >= 10){
+                    newChicken++;
+                    service++;
+                    coupone = coupone%10
+                }
+                
+                if(chicken < 10 && coupone <10){
+                    return service
+                }
+
+                return chickenCount(newChicken , service , coupone) 
+                
+            }
+            
+            answer = chickenCount(chicken,0,0);
+            return answer;
+        }
+        // 다음 큰 숫자
+        function solution(n) {
+            let m = n;
+            while(true){
+                m++;
+                if(m.toString(2).replaceAll(/0/g, '').length === n.toString(2).replaceAll(/0/g, '').length) return m;
+            }
+        }
+        // 크기가 작은 부분 문자열
+        function solution(t, p) {
+            var answer = 0;
+            const tLen = t.length;
+            const pLen = p.length;
+
+            for(let i = 0; i <= tLen - pLen; i++){
+                if(+t.slice(i,i+pLen) <= +p) answer++;
+
+            }
+            
+            return answer;
+        }
+        // 삼총사
+        function solution(number) {
+            var answer = 0;
+
+            const DFS = (start , SumArr) => {
+                console.log(start,SumArr);
+                if(SumArr.length === 3){
+                    const sum = SumArr.reduce((acc,cur) => acc + cur , 0);
+                    if(sum === 0){
+                        answer++;
+                    }
+                    return
+                }
+
+                for(let i = start; i<number.length; i++){
+                    DFS(i+1 , [...SumArr , number[i]]);
+                }
+            
+            }
+
+            DFS(0,[]);
+
+            return answer;
+        }
+        // 저주의 숫자 3
+        function solution(n) {
+            var answer = 0;
+            for(let i = 1; i<n; i++){
+                if(i%3 === 0 || (""+i).match(/3/)) answer++;
+            }
+            answer += n;
+            
+            for(let i=n; i<=answer; i++){
+                if(i%3 === 0 || (""+i).match(/3/)) answer++;
+            }
+
+            return answer;
+        }
+        // 피보나치 수
+        function solution(n){
+            let pibo = [BigInt(0),BigInt(1)];
+
+            for(let i = 2; i<=n; i++){
+                pibo[i] = pibo[i-1] + pibo[i-2];
+            }
+            return pibo[n]% BigInt(1234567);
+        }
+        // 최소 직사각형
+        function solution(sizes) {
+            let garo = [];
+            let sero = [];
+            sizes.forEach(el => {
+                if(el[0] < el[1]){
+                    let temp = el[0];
+                    el[0] = el[1];
+                    el[1] = temp;
+                }
+                garo.push(el[0]);
+                sero.push(el[1]);
+            })
+
+            return Math.max(...garo) * Math.max(...sero);
+        }
+        // 전국 대회 선발고사
+        function solution(rank, attendance) {
+            var answer = rank.filter((_, index) => attendance[index]).sort((a,b) => a-b);
+            const a = rank.findIndex(el => el === answer[0])*10000;
+            const b = rank.findIndex(el => el === answer[1])*100;
+            const c = rank.findIndex(el => el === answer[2]);
+            return a+b+c;
+        }
 </script>
 </body>
 </html>
