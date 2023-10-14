@@ -1924,6 +1924,156 @@
             const c = rank.findIndex(el => el === answer[2]);
             return a+b+c;
         }
+        // 시저암호
+        function solution(s, n) {
+            var answer = [...s].map(el => {
+                if(el === ' '){
+                    return el;
+                }
+
+                let char = el.charCodeAt()+n;
+
+                if(/[a-z]/.test(el) && char > 'z'.charCodeAt()){
+                    char -= 26;
+                }else if(/[A-Z]/.test(el) && char > 'Z'.charCodeAt()){
+                    char -= 26;
+                }
+
+                return String.fromCharCode(char);
+            });
+
+            return answer.join('');
+        }
+        // 문자열 밀기
+        function solution(A, B) {
+            var answer = -1;
+
+            if(A === B){
+                return 0;
+            }
+            
+            let originString = A;
+            for(let i=0; i<A.length; i++){
+                let checkString = [...originString];
+                const str = checkString.pop();
+
+                checkString.unshift(str);
+                checkString = checkString.join('');
+                originString = checkString;
+                
+                if(checkString === B){
+                    answer = i+1;
+                    break;
+                }
+            }
+
+            return answer;
+        }
+        // 특이한 정렬
+        function solution(numlist, n) {
+            var answer = numlist.sort((a,b) => {
+                if(Math.abs(n-a) === Math.abs(n-b)){
+                    return a>b ? -1 : 1;
+                }
+
+                return Math.abs(n-a) > Math.abs(n-b) ? 1 : -1
+            });
+
+            return answer;
+        }
+        // 짝지어 제거하기
+        function solution(s){
+            const stack = []
+            for(let i=0;i<s.length;i++){
+                if(stack[stack.length - 1] === s[i]){
+                    stack.pop()
+                }
+                else{
+                    stack.push(s[i])
+                }
+            }
+
+            return stack.length === 0 ? 1 : 0
+        }
+        // 배열 만들기 2
+        function solution(l, r) {
+            let result = [];
+            
+            function isZeroAndFiveOnly(num) {
+                const numStr = num.toString();
+                for (let char of numStr) {
+                    if (char !== '0' && char !== '5') {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            
+            
+            for (let i = l; i <= r; i++) {
+                if (isZeroAndFiveOnly(i)) {
+                    result.push(i);
+                }
+            }
+
+            return result.length > 0 ? result : [-1];
+        }
+        // PCCP 모의거사 2회 실습용 로봇
+        function solution(command) {
+            var answer = [0,0];
+            const Direction = 'NESWNESW';
+            let head = 'N';
+            
+            [...command].forEach(move => {
+                if(move === 'R'){
+                    head = Direction[Direction.indexOf(head)+1];
+                }
+                if(move === 'L'){
+                    head = Direction[Direction.lastIndexOf(head)-1]
+                }
+
+                if(move === 'G'){
+                    if(head === 'N') answer[1] = answer[1]+1;
+                    if(head === 'E') answer[0] = answer[0]+1;
+                    if(head === 'S') answer[1] = answer[1]-1;
+                    if(head === 'W') answer[0] = answer[0]-1;
+                }
+                if(move === 'B'){
+                    if(head === 'N') answer[1] = answer[1]-1;
+                    if(head === 'E') answer[0] = answer[0]-1;
+                    if(head === 'S') answer[1] = answer[1]+1;
+                    if(head === 'W') answer[0] = answer[0]+1;
+                }
+                
+                
+            })
+            
+            return answer;
+        }
+        // PCCP 모의고사 2회 카페 확장
+        function solution(menu, order, k) {
+            const queue = [];
+            let max = 0;
+            let time = 0;
+            
+            while(order.length > 0 || queue.length > 0){
+                if(time === 0){
+                    queue.push(menu[order.shift()]);
+                    time++;
+                    continue;
+                }
+
+                if(time%k === 0 && order.length > 0){
+                    queue.push(menu[order.shift()] + (queue.length > 0 ? queue[queue.length-1] : time));  
+                } 
+                if(queue[0] <= time && queue.length > 0) queue.shift();
+
+                max = Math.max(max, queue.length);
+                time++
+            }
+            
+            return max;
+        }
 </script>
 </body>
 </html>

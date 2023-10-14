@@ -11,15 +11,34 @@
 </head>
 <body>
     <script>
-        function solution(rank, attendance) {
-            var answer = rank.filter((_, index) => attendance[index]).sort((a,b) => a-b);
-            const a = rank.findIndex(el => el === answer[0])*10000;
-            const b = rank.findIndex(el => el === answer[1])*100;
-            const c = rank.findIndex(el => el === answer[2]);
-            return a+b+c;
-        }
+       function solution(menu, order, k) {
+            const queue = [];
+            let max = 0;
+            let time = 0;
 
-        console.log(solution([3, 7, 2, 5, 4, 6, 1],[false, true, true, true, true, false, false]))
+            while (order.length > 0 || queue.length > 0) {
+                if(time === 0){
+                    queue.push(menu[order.shift()]);
+                    time++;
+                    continue;
+                }
+                if (time % k === 0 && order.length > 0) {
+                    queue.push(menu[order.shift()] + (queue.length > 0 ? queue[queue.length - 1] : time));
+                }
+
+                if (queue.length > 0 && queue[0] <= time) {
+                    queue.shift();
+                }
+
+
+                max = Math.max(max, queue.length);
+                time++;
+            }
+
+            return max;
+        }
+        
+        console.log(solution([5, 6, 7, 11],[1, 2, 3, 3, 2, 1, 1],10))
 </script>
 </body>
 </html>
