@@ -11,34 +11,12 @@
 </head>
 <body>
     <script>
-       function solution(menu, order, k) {
-            const queue = [];
-            let max = 0;
-            let time = 0;
-
-            while (order.length > 0 || queue.length > 0) {
-                if(time === 0){
-                    queue.push(menu[order.shift()]);
-                    time++;
-                    continue;
-                }
-                if (time % k === 0 && order.length > 0) {
-                    queue.push(menu[order.shift()] + (queue.length > 0 ? queue[queue.length - 1] : time));
-                }
-
-                if (queue.length > 0 && queue[0] <= time) {
-                    queue.shift();
-                }
-
-
-                max = Math.max(max, queue.length);
-                time++;
-            }
-
-            return max;
+        function solution(brown, yellow) {
+            var answer = [];
+            answer = brown + yellow;
+            return answer;
         }
-        
-        console.log(solution([5, 6, 7, 11],[1, 2, 3, 3, 2, 1, 1],10))
+        console.log(solution(24,24));
 </script>
 </body>
 </html>
