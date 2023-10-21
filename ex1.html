@@ -11,12 +11,32 @@
 </head>
 <body>
     <script>
-        function solution(brown, yellow) {
-            var answer = [];
-            answer = brown + yellow;
+        function solution(n, words) {
+            var answer = [0,0];
+            let array = [];
+
+
+            words.every((el,i)=>{
+                if(i === 0){
+                    array.push(el); 
+                }else{
+                    const last = words[i-1].slice(-1);
+                    const first =  el.slice(0,1);
+                    
+                    if(last != first || array.includes(el)){
+                        answer[0] = Math.ceil(i%n+1);
+                        answer[1] = Math.ceil((i+1)/n);
+                        return false;
+                    }
+                } 
+
+                array.push(el);
+                return true
+            })
+
             return answer;
         }
-        console.log(solution(24,24));
+        console.log(solution(3,["tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"]));
 </script>
 </body>
 </html>

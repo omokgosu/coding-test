@@ -2074,7 +2074,54 @@
             
             return max;
         }
-        //카펫
+        // 숫자 문자열과 영단어
+        function solution(s) {
+            var answer = s;
+            const string = {
+                "zero": 0,
+                "one": 1,
+                "two": 2,
+                "three": 3,
+                "four": 4,
+                "five": 5,
+                "six": 6,
+                "seven": 7,
+                "eight": 8,
+                "nine": 9
+            }
+
+            for(const char in string){
+                answer = answer.replaceAll(char , string[char]);
+            }
+            
+            return +answer;
+        }
+        // Summer/Winter Coding(~2018) 영어 끝말잇기
+        function solution(n, words) {
+            var answer = [0,0];
+            let array = [];
+
+
+            words.every((el,i)=>{
+                if(i === 0){
+                    array.push(el); 
+                }else{
+                    const last = words[i-1].slice(-1);
+                    const first =  el.slice(0,1);
+                    
+                    if(last != first || array.includes(el)){
+                        answer[0] = Math.ceil(i%n+1);
+                        answer[1] = Math.ceil((i+1)/n);
+                        return false;
+                    }
+                } 
+
+                array.push(el);
+                return true
+            })
+
+            return answer;
+        }
 </script>
 </body>
 </html>
