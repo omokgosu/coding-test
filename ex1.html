@@ -11,32 +11,28 @@
 </head>
 <body>
     <script>
-        function solution(n, words) {
-            var answer = [0,0];
-            let array = [];
+        function solution(code) {
+            var answer = '';
+            let mode = false;
 
-
-            words.every((el,i)=>{
-                if(i === 0){
-                    array.push(el); 
-                }else{
-                    const last = words[i-1].slice(-1);
-                    const first =  el.slice(0,1);
-                    
-                    if(last != first || array.includes(el)){
-                        answer[0] = Math.ceil(i%n+1);
-                        answer[1] = Math.ceil((i+1)/n);
-                        return false;
-                    }
-                } 
-
-                array.push(el);
-                return true
+            [...code].forEach((char,i) => {
+                if(char === '1'){
+                    mode = !mode;
+                    return
+                }
+                if(mode && i%2 === 1){
+                    answer += char;
+                    return
+                }
+                if(!mode && i%2 === 0){
+                    answer += char;
+                    return
+                }
             })
 
-            return answer;
-        }
-        console.log(solution(3,["tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"]));
+            return answer === '' ? 'EMPTY' : answer;
+        }   
+        console.log(solution("abc1abc1abc"));
 </script>
 </body>
 </html>

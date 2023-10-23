@@ -2122,6 +2122,112 @@
 
             return answer;
         }
+        // 가장 가까운 같은글자
+        function solution(s) {
+            var answer = [];
+            let string = [];
+            
+            [...s].forEach((char,i) => {
+                const result = string.lastIndexOf(char); 
+                string.lastIndexOf(char) > -1 ? answer.push(i-result) : answer.push(result);
+                
+                string.push(char);
+            })
+            
+            return answer;
+        }
+        // 문자열 내 마음대로 정렬하기
+        function solution(strings, n) {
+            return strings.sort((a,b) => a-b).sort((a, b) => {
+                if (a[n] < b[n]) {
+                return -1;
+                }
+                if (a[n] > b[n]) {
+                return 1;
+                }
+                return a.localeCompare(b);
+            }); 
+        }
+        // 2018 카카오 블라인드
+        function solution(n, arr1, arr2) {
+            var answer = [];
+            arr1 = arr1.map((el) => {
+                el = el.toString(2);
+                if(el.length < n){
+                    el = [...el];
+                    for(let i = el.length; i < n; i++){
+                        el.unshift('0');
+                    }
+                    return el.join('');
+                }
+                return el;
+            })
+            arr2 = arr2.map((el) => {
+                el =  el.toString(2);
+                if(el.length < n){
+                    el = [...el];
+                    for(let i = el.length; i < n; i++){
+                        el.unshift('0');
+                    }
+                    return el.join('');
+                }
+                return el;
+            })
+
+            arr1.forEach((_,i) => {
+                let a = [...arr1][i];
+                let b = [...arr2][i];
+                let count = 0;
+                let result = [];
+                while(count < n){
+                    if(a[count] == 1 || b[count] == 1){
+                        result.push('#');
+                    }else{
+                        result.push(' ');
+                    }
+
+                    count++
+                }
+                
+                answer.push(result.join(''));
+            })
+            
+            return answer;        
+        }   
+        // 푸드 파이트 대회
+        function solution(food) {
+            food.splice(0,1);
+            let answer = food.map((el,i) => {
+                if(el%2 === 1){
+                    el--;
+                }
+                return `${i+1}`.repeat(el/2);
+            }).join('');
+
+           return answer + '0' + [...answer].reverse().join('');;
+        }
+        // 코드 처리하기
+        function solution(code) {
+            var answer = '';
+            let mode = false;
+
+            [...code].forEach((char,i) => {
+                if(char === '1'){
+                    mode = !mode;
+                    return
+                }
+                if(mode && i%2 === 1){
+                    answer += char;
+                    return
+                }
+                if(!mode && i%2 === 0){
+                    answer += char;
+                    return
+                }
+            })
+
+            return answer === '' ? 'EMPTY' : answer;
+        }   
 </script>
 </body>
 </html>

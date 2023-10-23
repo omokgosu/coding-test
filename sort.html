@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정렬 문제</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <script>
+        // k번째수
+        function solution(array, commands) {
+            var answer = [];
+            
+            for(let i = 0; i < commands.length; i++){
+                const [start,end,k] = commands[i];
+                let item = array.slice(start-1,end).sort((a,b) => a-b)[k-1];
+                answer.push(item);
+            }
+            
+            return answer;
+        }
+</script>
+</body>
+</html>
