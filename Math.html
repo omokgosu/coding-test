@@ -36,6 +36,16 @@
             if(x > 1 && c === 0) return `${x}x`
             if(c > 0 && x === 0) return `${c}`
         }
+        // N개의 최소공배수
+        function solution(arr) {
+            let answer = 0;
+            const gcd = (a, b) => b ? gcd(b, a % b) : a;
+            
+            answer = arr.reduce((a,b) => a*b / gcd(a,b));
+            
+            return answer;
+        }
+        // 연속 부분 수열 합의 개수
 </script>
 </body>
 </html>

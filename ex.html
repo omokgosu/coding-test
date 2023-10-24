@@ -2227,7 +2227,177 @@
             })
 
             return answer === '' ? 'EMPTY' : answer;
-        }   
+        }
+        // 두개 뽑아서 더하기
+        function solution(numbers) {
+            var answer = [];
+            numbers.forEach((num , i) => {
+                for(let j=i+1; j<numbers.length; j++){
+                    let number = numbers[j] + numbers[i];
+                    if(!answer.includes(number)) answer.push(number);
+                }
+            })
+            return answer.sort((a,b) => a-b);
+        }
+        // 점프와 순간이동 ..이게되네
+        function solution(n){
+            var ans = 0;
+            
+            while(n > 0){
+                if(n % 2 === 1){
+                    n--;
+                    ans++;
+                }
+                n = n/2;
+            }
+
+            return ans;
+        }
+        // 예상 대진표
+        function solution(n,a,b){
+            var answer = 1;
+
+            while(Math.abs(a-b) != 1 || (a+b-3)%4 != 0){
+                answer++;
+                a = Math.ceil(a/2);
+                b = Math.ceil(b/2);
+            }
+
+            return answer;
+        }
+        // 콜라 문제
+        function solution(a, b, n) {
+            var answer = 0;
+            let empty = 0;
+        
+            while(n+empty >= a){
+                n = n+empty;
+                empty = 0;
+
+                if(n%a === 0){
+                    n = n/a*b;
+                    answer += n;
+                    continue;
+                }
+
+                empty = n%a;
+                n = (n-empty)/a*b;
+                answer += n;
+            }
+            
+            return answer;
+        }
+        // 멀리 뛰기
+        function solution(n) {
+            if(n === 1){
+                return 1
+            }
+            let answer = 0n; 
+            let dp = [1n, 2n];  
+
+            for (let i = 2; i < n; i++) {
+                dp.push(dp[i - 1] + dp[i - 2]);
+            }
+
+            answer = dp[dp.length - 1];
+
+            return answer % 1234567n; 
+        }
+        // 최빈값 구하기
+        function solution(array) {
+            const countMap = {}; 
+            let maxCount = 0; 
+            let mode = -1;
+
+            for (const num of array) {
+                if (countMap[num] === undefined) {
+                    countMap[num] = 0;
+                }
+                countMap[num]++;
+                if (countMap[num] > maxCount) {
+                    maxCount = countMap[num];
+                    mode = num;
+                } else if (countMap[num] === maxCount) {
+                    mode = -1; 
+                }
+            }
+            
+            return mode;
+        }
+        // 추억 점수
+        function solution(name, yearning, photo) {
+            var answer = photo.map(people => {
+                let score = 0;
+                people.forEach(el => {
+                    let currentScore = yearning[name.indexOf(el)];
+                    if(currentScore) score += currentScore;
+                })
+                return score
+            })
+            return answer;
+        }
+        // 귤 고르기
+        function solution(k, tangerine) {
+            const countMap = {};
+            let count = 0;
+            var answer = 0;
+
+            for(const num of tangerine){
+                if(countMap[num] === undefined) countMap[num] = 0;
+                countMap[num]++;
+            }
+
+            let kind = Object.values(countMap).sort((a,b) => b-a);
+
+            for(let i=0; i<kind.length; i++){
+                count += kind[i];
+                answer++
+                if(count >= k) break;
+            }
+
+            return answer;
+        }
+        // 배열 조각하기
+        function solution(arr, query) {
+            var answer = [...arr];
+            query.forEach((que,i) => {
+                if(i%2 === 0){
+                    answer.splice(que+1);
+                }else{
+                    answer.splice(0,que);
+                }
+            })
+            return answer;
+        }
+        // OX 퀴즈
+        function solution(quiz) {
+            return quiz.map(el => {
+                el = el.split('=');
+                return Function(`return ${el[0]}`)() === +el[1] ? 'O' : 'X'
+            });
+        }
+        // 명예의 전당
+        function solution(k, score) {
+            var answer = [];
+            let number = [];
+            score.forEach((el,i) => {
+                if(i < k) {
+                    number.push(el); 
+                    answer.push(Math.min(...number));
+                    return
+                }
+                if(i === k){
+                    number = number.sort((a,b) => a-b);
+                }
+                if(Math.min(...number) < el){
+                    number.shift();
+                    number.push(el);
+                    number = number.sort((a,b) => a-b);
+                }
+                answer.push(number[0]);
+            })
+            return answer;
+        }
 </script>
 </body>
 </html>
