@@ -2398,6 +2398,104 @@
             })
             return answer;
         }
+        // 카드 뭉치
+        function solution(cards1, cards2, goal) {
+            var answer = 'Yes';
+            for(let string of goal){
+                let card1 = cards1[0];
+                let card2 = cards2[0];
+
+                if(string === card1){
+                    cards1.shift();
+                }else if(string === card2){
+                    cards2.shift();
+                }else{
+                    answer = 'No';
+                    break;
+                }
+            }
+
+            return answer;
+        }
+        // n^2 배열자르기
+        function solution(n, left, right) {
+            var answer = [];
+            for(let i=left; i<=right; i++){
+                let number = Math.floor(i/n) - i%n;
+                number = number < 0 ? 0 : number;
+                answer.push(i%n + 1 + number);
+            }
+
+            return answer;
+        }
+        // 할인 행사
+        function solution(want, number, discount) {
+            let answer = 0;
+            var Criteria = want.map((el,i) => {
+                return el.repeat(number[i]);
+            }).sort((a,b)=>{
+                if (a > b) {
+                    return -1;
+                }
+                if (a < b) {
+                    return 1;
+                }
+                return 0;
+            }).join("");
+            
+            let compare = discount.splice(0,10);
+            
+            while(discount.length != 0){
+                let string = [...compare].sort((a,b) =>{
+                    if (a > b) {
+                        return -1;
+                    }
+                    if (a < b) {
+                        return 1;
+                    }
+                    return 0;
+                }).join('');
+                if(Criteria === string) answer++;
+
+                compare.shift();
+                compare.push(discount.shift());
+
+                if(discount.length === 0){
+                    let string = [...compare].sort((a,b) =>{
+                        if (a > b) {
+                            return -1;
+                        }
+                        if (a < b) {
+                            return 1;
+                        }
+                        return 0;
+                    }).join('');
+                    if(Criteria === string) answer++;
+                }
+            }
+            
+
+            return answer;
+        }
+        //날짜 구하기
+        function solution(a, b) {
+            let month = [31,29,31,30,31,30,31,31,30,31,30,31];
+            let day = ['THU','FRI','SAT','SUN','MON','TUE','WED']
+            var answer = 0;
+            
+            for(let i=0; i<a-1; i++){
+                answer += month[i];
+            }
+            answer += b;
+            
+            return day[answer%7];
+        }
+        // 폰켓몬
+        function solution(nums) {
+            var answer = [...new Set(nums)].slice(0,nums.length/2).length;
+            return answer;
+        }
+
 </script>
 </body>
 </html>

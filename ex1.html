@@ -11,39 +11,12 @@
 </head>
 <body>
     <script>
-        function solution(s) {
-            var answer = 0;
-            s = [...s];
-            const check = (array) => {
-                const stack = [];
-                for(let char of array){
-                    if(char === '(' || char === '{' || char === '['){
-                        stack.push(char);
-                    }else if(char === ')' && stack[stack.length-1] === '('){
-                        stack.pop();
-                    }else if(char === '}' && stack[stack.length-1] === '{'){
-                        stack.pop();
-                    }else if(char === ']' && stack[stack.length-1] === '['){
-                        stack.pop();
-                    }else{
-                        return false
-                    }
-                }
-
-                return stack.length > 0 ? false : true;
-            }
-
-            for(let i=0; i<s.length; i++){
-                let array = [...s];
-                
-                if(check(array)) answer++;
-                s.push(s.shift());
-            }
-
+        function solution(nums) {
+            var answer = [...new Set(nums)].slice(0,nums.length/2).length;
             return answer;
         }
 
-        console.log(solution("[](){}"));
-</script>
+        console.log(solution([3,1,2,3]));
+    </script>
 </body>
 </html>
