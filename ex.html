@@ -2495,7 +2495,78 @@
             var answer = [...new Set(nums)].slice(0,nums.length/2).length;
             return answer;
         }
+        // 의상
+        function solution(clothes) {
+            var answer = 1;
+            const clothe = {};
+            function factorial(num) {
+                if (num === 0) {
+                    return 1;
+                }
+                return num * factorial(num - 1);
+            }
 
+            function combination(n, r) {
+                if (n < r) {
+                    return 0; // n은 r보다 작을 수 없습니다.
+                }
+                
+                const numerator = factorial(n);
+                const denominator = factorial(n - r) * factorial(r);
+
+                return numerator / denominator;
+            }
+
+            clothes.forEach(el => {
+                if(clothe[el[1]] === undefined){
+                    clothe[el[1]] = 0;
+                } 
+                clothe[el[1]]++;
+            })
+
+            for(let kind in clothe){
+               answer *= (combination(clothe[kind],1) + combination(clothe[kind],0));
+            }
+
+            return answer-1;
+        }
+        // 캐시
+        function solution(cacheSize, cities) {
+            var answer = 0;
+            const cache = {};
+
+            cities.forEach(el => {
+                el = el.toUpperCase();
+                for(let key in cache){
+                    cache[key]++;
+                }  
+                if(cache[el]){
+                    cache[el] = 0;
+                    answer++;
+                }
+                if(cache[el] === undefined){
+                    cache[el] = 0;
+                    answer += 5;
+                }
+
+                if (Object.keys(cache).length > cacheSize) {
+                    let maxKey = null;
+                    let maxVal = -Infinity;
+
+                    for (let key in cache) {
+                        if (cache.hasOwnProperty(key)) {
+                            if (cache[key] > maxVal) {
+                                maxKey = key;
+                                maxVal = cache[key];
+                            }
+                        }
+                    }
+                    delete cache[maxKey];
+                }
+            })
+
+            return answer;
+        }
 </script>
 </body>
 </html>

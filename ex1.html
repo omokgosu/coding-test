@@ -11,12 +11,44 @@
 </head>
 <body>
     <script>
-        function solution(nums) {
-            var answer = [...new Set(nums)].slice(0,nums.length/2).length;
+        function solution(cacheSize, cities) {
+            var answer = 0;
+            const cache = {};
+
+            cities.forEach(el => {
+                el = el.toUpperCase();
+                for(let key in cache){
+                    cache[key]++;
+                }  
+                if(cache[el]){
+                    cache[el] = 0;
+                    answer++;
+                }
+                if(cache[el] === undefined){
+                    cache[el] = 0;
+                    answer += 5;
+                }
+
+                if (Object.keys(cache).length > cacheSize) {
+                    let maxKey = null;
+                    let maxVal = -Infinity;
+
+                    for (let key in cache) {
+                        if (cache.hasOwnProperty(key)) {
+                            if (cache[key] > maxVal) {
+                                maxKey = key;
+                                maxVal = cache[key];
+                            }
+                        }
+                    }
+                    delete cache[maxKey];
+                }
+            })
+
             return answer;
         }
 
-        console.log(solution([3,1,2,3]));
+        console.log(solution(3, ["Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul"]));
     </script>
 </body>
 </html>
