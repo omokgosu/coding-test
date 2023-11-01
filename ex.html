@@ -2567,6 +2567,27 @@
 
             return answer;
         }
+        // 2019 카카오 개발자 겨울 인턴십 튜플
+        function solution(s) {
+            var answer = [];
+            let count = {};
+            const json =  JSON.parse(s.split('{').join('[').split('}').join(']'));
+
+            json.forEach((array) => {
+                array.forEach((number) => {
+                    if(count[number] === undefined){
+                        count[number] = 0;
+                    }
+
+                    count[number]++;
+                })
+            })
+
+            count = Object.entries(count).sort((a,b) => b[1] - a[1])
+            answer = count.map(item => Number(item[0]));
+
+            return answer;
+        }
 </script>
 </body>
 </html>

@@ -11,44 +11,29 @@
 </head>
 <body>
     <script>
-        function solution(cacheSize, cities) {
-            var answer = 0;
-            const cache = {};
+        function solution(progresses, speeds) {
+            var answer = [];
 
-            cities.forEach(el => {
-                el = el.toUpperCase();
-                for(let key in cache){
-                    cache[key]++;
-                }  
-                if(cache[el]){
-                    cache[el] = 0;
-                    answer++;
-                }
-                if(cache[el] === undefined){
-                    cache[el] = 0;
-                    answer += 5;
-                }
+            while(progresses.length > 0){
+                let count = 0;
 
-                if (Object.keys(cache).length > cacheSize) {
-                    let maxKey = null;
-                    let maxVal = -Infinity;
+                progresses = progresses.map((item,i) => item + speeds[i]);
 
-                    for (let key in cache) {
-                        if (cache.hasOwnProperty(key)) {
-                            if (cache[key] > maxVal) {
-                                maxKey = key;
-                                maxVal = cache[key];
-                            }
-                        }
+                if(progresses[0] >= 100){
+                    while(progresses[0] >= 100){
+                        count++;
+                        progresses.shift();
+                        speeds.shift();
                     }
-                    delete cache[maxKey];
                 }
-            })
 
+
+                if(count > 0) answer.push(count);
+            }
             return answer;
         }
 
-        console.log(solution(3, ["Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul"]));
+        console.log(solution([93, 30, 55],[1, 30, 5]));
     </script>
 </body>
 </html>

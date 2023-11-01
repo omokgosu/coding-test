@@ -43,6 +43,28 @@
 
             return answer;
         }
+        // 기능개발
+        function solution(progresses, speeds) {
+            var answer = [];
+
+            while(progresses.length > 0){
+                let count = 0;
+
+                progresses = progresses.map((item,i) => item + speeds[i]);
+
+                if(progresses[0] >= 100){
+                    while(progresses[0] >= 100){
+                        count++;
+                        progresses.shift();
+                        speeds.shift();
+                    }
+                }
+
+
+                if(count > 0) answer.push(count);
+            }
+            return answer;
+        }
 </script>
 </body>
 </html>
